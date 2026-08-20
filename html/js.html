@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      .language-switcher {
+        display: flex;
+        align-items: center;
+        font-family: "Arial", sans-serif;
+      }
+      .lang-btn {
+        background: none;
+        border: 3px dotted green;
+        color: #555;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 2px 8px;
+        transition: all 0.3s ease;
+      }
+      .lang-btn.active {
+        color: #0b7f60; /* বাংলাদেশ সরকারের সবুজ রঙ */
+        font-weight: bold;
+      }
+      .separator {
+        color: #df1111;
+        margin: 0 4px;
+      }
+    </style>
+
+    <script src="../js/script.js"></script>
+    <!-- Language Switcher Container -->
+    <div class="language-switcher">
+      <button
+        id="lang-bn"
+        class="lang-btn active"
+        onclick="changeLanguage('bn')">
+        বাংলা
+      </button>
+      <span class="separator">|</span>
+      <button
+        id="lang-en"
+        class="lang-btn"
+        onclick="changeLanguage('en')">
+        English
+      </button>
+    </div>
+
+    <!-- বডির ভেতরের টেক্সটগুলোর উদাহরণ (data attributes সহ) -->
+    <h1 data-key="office-title">উপজেলা মাধ্যমিক শিক্ষা অফিস</h1>
+    <p data-key="welcome-msg">স্মার্ট শিক্ষা অফিসে আপনাকে স্বাগতম</p>
+  </body>
+</html>

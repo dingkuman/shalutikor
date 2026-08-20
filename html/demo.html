@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Upazila Secondary Education Office - Responsive Portal</title>
+    <style>
+      /* 🎨 ১. গ্লোবাল এবং থিম ডিজাইন (BD Govt Standard) */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      body {
+        background-color: #f4f6f9;
+        color: #333;
+        overflow-x: hidden;
+      }
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+      }
+
+      /* 🏛️ ২. হেডার এবং টপ বার (Header Section) */
+      .top-bar {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #ddd;
+        padding: 8px 0;
+        font-size: 13px;
+        color: #555;
+      }
+      .lang-switcher button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        color: #666;
+        padding: 2px 6px;
+        transition: color 0.3s ease;
+      }
+      .lang-switcher button:hover {
+        color: #d9534f;
+      }
+      .lang-switcher button.active {
+        color: #006a4e;
+        text-decoration: underline;
+      }
+
+      header {
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        padding: 15px 0;
+      }
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .gov-logo {
+        width: 50px;
+        height: 50px;
+        background: #006a4e;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 10px;
+        text-align: center;
+        flex-shrink: 0;
+      }
+      .office-title h1 {
+        font-size: 20px;
+        color: #006a4e;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+      .office-title p {
+        font-size: 12px;
+        color: #666;
+        margin-top: 2px;
+      }
+
+      /* 🗺️ ৩. নেভিগেশন মেনু (Desktop & Mobile Menu) */
+      nav {
+        background-color: #006a4e;
+        color: white;
+        position: relative;
+        z-index: 999;
+      }
+      nav .container {
+        justify-content: space-between;
+      }
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 15px;
+      }
+      nav ul li a {
+        display: block;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 10px 12px;
+        border-radius: 4px;
+      }
+      nav ul li a:hover {
+        color: #111a24;
+        background-color: #ffcc00;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      /* মোবাইল মেনু বাটন (Hamburger Icon) */
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 10px 0;
+      }
+      .menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        transition: 0.3s;
+      }
+
+      /* 📢 ৪. ব্রেকিং নোটিশ (Scrolling Marquee) */
+      .notice-ticker {
+        background-color: #ffcc00;
+        padding: 8px 0;
+        font-weight: bold;
+        font-size: 14px;
+      }
+      .ticker-wrapper {
+        display: flex;
+        align-items: center;
+      }
+      .ticker-title {
+        background: #d9534f;
+        color: white;
+        padding: 4px 10px;
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-right: 15px;
+        border-radius: 3px;
+        flex-shrink: 0;
+      }
+      #marquee-link:hover {
+        color: #006a4e;
+        text-decoration: underline;
+      }
+
+      /* 💻 ৫. মেইন বডি সেকশন (Layout) */
+      .main-body {
+        width: 90%;
+        max-width: 1200px;
+        margin: 30px auto;
+        display: flex;
+        gap: 30px;
+      }
+      .content-area {
+        flex: 3;
+        min-width: 0;
+      }
+      .sidebar {
+        flex: 1;
+        min-width: 0;
+      }
+
+      /* উইজেট ও কার্ড স্টাইল */
+      .card {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        border-top: 4px solid #006a4e;
+      }
+      .card h2 {
+        color: #006a4e;
+        font-size: 18px;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 8px;
+      }
+
+      /* ড্যাশবোর্ড স্ট্যাটস গ্রিড */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin-top: 15px;
+      }
+      .stat-box {
+        background: #e6f0ed;
+        padding: 15px;
+        text-align: center;
+        border-radius: 6px;
+        border: 1px solid #cce1da;
+        transition: transform 0.3s;
+      }
+      .stat-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .stat-box h3 {
+        font-size: 24px;
+        color: #006a4e;
+      }
+      .stat-box p {
+        font-size: 12px;
+        color: #555;
+        margin-top: 5px;
+      }
+
+      /* নোটিশ বোর্ডের লিংকের হোভার */
+      .notice-list {
+        list-style: none;
+      }
+      .notice-list li {
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 1px dashed #eee;
+      }
+      .notice-list li a {
+        display: block;
+        font-size: 14px;
+        color: #333;
+        font-weight: 500;
+        line-height: 1.4;
+      }
+      .notice-list li a:hover {
+        color: #006a4e;
+        padding-left: 8px;
+      }
+
+      /* অফিসারের উইজেট প্রোফাইল */
+      .officer-widget {
+        text-align: center;
+      }
+      .officer-img {
+        width: 120px;
+        height: 120px;
+        background: #ddd;
+        border-radius: 50%;
+        margin: 0 auto 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: #777;
+        border: 3px solid #006a4e;
+      }
+      .officer-info h4 {
+        font-size: 16px;
+        color: #333;
+      }
+      .officer-info p {
+        font-size: 12px;
+        color: #666;
+        margin-top: 4px;
+      }
+
+      /* 👣 ৬. ফুটার সেকশন (Footer Section) */
+      footer {
+        background-color: #1a252f;
+        color: #ecf0f1;
+        padding: 20px 0 0;
+        margin-top: 50px;
+        font-size: 14px;
+      }
+      .footer-cols {
+        width: 90%;
+        max-width: 1200px;
+        margin: 20px auto 40px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+      .footer-col h3 {
+        color: #f4b41a;
+        font-size: 16px;
+        margin-bottom: 15px;
+      }
+      .footer-col ul {
+        list-style: none;
+      }
+      .footer-col ul li {
+        margin-bottom: 10px;
+      }
+      .footer-col ul li a {
+        color: #bdc3c7;
+      }
+      .footer-col ul li a:hover {
+        color: #ffcc00;
+        text-decoration: underline;
+        padding-left: 4px;
+      }
+
+      .bottom-footer {
+        background-color: #111a24;
+        padding: 15px 10px;
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        border-top: 1px solid #2c3e50;
+        line-height: 1.5;
+      }
+      .developer-link {
+        color: #ffcc00;
+        font-weight: bold;
+      }
+      .developer-link:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      /* 📱 ⚡ ৭. রেসপন্সিভ মিডিয়া কোয়েরি (Responsive Media Queries) */
+
+      /* 💻 ট্যাবলেট এবং আইপ্যাডের জন্য (Max Width: 992px) */
+      @media (max-width: 992px) {
+        .main-body {
+          flex-direction: column;
+        } /* বডি সাইডবার নিচে নেমে যাবে */
+        .stats-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .footer-cols {
+          grid-template-columns: repeat(2, 1fr);
+        } /* ফুটার ৩ কলাম থেকে ২ কলাম হবে */
+      }
+
+      /* 📱 মোবাইল ডিভাইসের জন্য (Max Width: 768px) */
+      @media (max-width: 768px) {
+        .container {
+          width: 92%;
+        }
+        .office-title h1 {
+          font-size: 17px;
+        }
+        .office-title p {
+          font-size: 11px;
+        }
+
+        /* মোবাইল নেভিগেশন রূপান্তর */
+        .menu-toggle {
+          display: flex;
+        } /* হ্যামবার্গার বাটন অন হবে */
+        nav ul {
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          background-color: #004d38;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          padding: 10px 0;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        nav ul.show {
+          display: flex;
+        } /* বাটনে ক্লিক করলে মেনু দেখাবে */
+        nav ul li {
+          width: 100%;
+          text-align: center;
+        }
+        nav ul li a {
+          padding: 12px;
+          border-radius: 0;
+        }
+
+        /* বডি এলিমেন্ট রেসপন্সিভ */
+        .stats-grid {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        } /* কাউন্টারগুলো ১ লাইনে ১টি করে আসবে */
+        .footer-cols {
+          grid-template-columns: 1fr;
+          gap: 25px;
+        } /* ফুটার ১ লাইনে ১টি করে আসবে */
+
+        .top-bar .container {
+          flex-direction: column;
+          gap: 5px;
+          text-align: center;
+        }
+        .logo-area {
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 🏛️ হেডার পার্ট শুরু -->
+    <div class="top-bar">
+      <div class="container">
+        <div>📞 হেল্পライン: ৩৩৩, ৯৯৯</div>
+        <div class="lang-switcher">
+          <button
+            id="btn-bn"
+            class="active"
+            onclick="switchLanguage('bn')">
+            বাংলা
+          </button>
+          |
+          <button
+            id="btn-en"
+            onclick="switchLanguage('en')">
+            English
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <header>
+      <div class="container">
+        <div class="logo-area">
+          <div class="gov-logo">BD<br />GOVT</div>
+          <div class="office-title">
+            <h1 data-key="title">উপজেলা মাধ্যমিক শিক্ষা অফিস</h1>
+            <p data-key="subtitle">মাধ্যমিক ও উচ্চ শিক্ষা অধিদপ্তর, বাংলাদেশ</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav>
+      <div class="container">
+        <!-- মোবাইল মেনু টগল বাটন -->
+        <button
+          class="menu-toggle"
+          id="mobile-menu-btn"
+          onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul id="nav-links">
+          <li>
+            <a
+              href="#"
+              data-key="nav-home"
+              >হোম</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              data-key="nav-about"
+              >আমাদের সম্পর্কে</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              data-key="nav-inst"
+              >প্রতিষ্ঠানসমূহ</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              data-key="nav-service"
+              >ই-সেবাসমূহ</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              data-key="nav-contact"
+              >যোগাযোগ</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- 📢 স্ক্রলিং নোটিশ বার -->
+    <div class="notice-ticker">
+      <div class="container ticker-wrapper">
+        <span
+          class="ticker-title"
+          data-key="ticker-label"
+          >জরুরি নোটিশ</span
+        >
+        <marquee
+          id="marquee-text"
+          behavior="scroll"
+          direction="left"
+          scrollamount="5">
+          <a
+            href="#"
+            id="marquee-link"
+            >চলতি বছরের অনলাইন MPO আবেদনের সময়সীমা আগামী ২৫ তারিখ পর্যন্ত বর্ধিত
+            করা হলো।</a
+          >
+        </marquee>
+      </div>
+    </div>
+
+    <!-- 💻 মেইন বডি পার্ট শুরু -->
+    <div class="main-body">
+      <!-- বাম পাশের মেইন কনটেন্ট -->
+      <div class="content-area">
+        <div class="card"></div>
+      </div>
+    </div>
+  </body>
+</html>

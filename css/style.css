@@ -1,0 +1,99 @@
+body {
+  margin: 15px 50px 15px 50px;
+}
+h1 {
+  border: 5px solid green;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+  margin: 5px 0 10px 0;
+  position: relative;
+}
+h1::first-letter {
+  color: green;
+  font-size: 150px;
+}
+h1::after {
+  content: "_position:fixed";
+  color: Red;
+  position: fixed;
+}
+h1::before {
+  content: "position:absolute";
+  position: absolute;
+  left: 370px;
+}
+main {
+  border: 5px solid red;
+  padding: 20px;
+}
+.para {
+  border: 5px solid green;
+  margin-bottom: 10px;
+  padding: 50px;
+}
+.para p::first-line {
+  color: red;
+}
+.para p::first-letter {
+  font-size: 30px;
+}
+.media {
+  border: 5px solid green;
+  margin-bottom: 10px;
+  padding: 50px;
+  text-align: center;
+  background-image: url(media/t.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.list {
+  border: 5px solid green;
+  margin-bottom: 10px;
+  padding: 50px;
+}
+.style li:nth-child(odd) {
+  color: rgb(2, 35, 179);
+  background-color: seagreen;
+}
+.style li:nth-child(5) {
+  color: seagreen;
+  background-color: rgb(237, 49, 49);
+}
+
+/*pseudo er khetre double colon(like__
+h2::first-letter{font-size:10px;}
+p::first-line{color:red;})
+ use korte hbe.
+
+div ekadhik holeo list er moto css kora jay*/
+
+.form {
+  border: 5px solid green;
+  margin-bottom: 10px;
+  padding: 50px;
+}
+
+.contact {
+  border: 5px solid green;
+  margin-bottom: 10px;
+  padding: 50px;
+}
+.form a {
+  background: #c09191;
+  display: inline-block;
+  text-decoration: none;
+  transition: 1s;
+  color: white;
+}
+.form a:hover {
+  color: black;
+}
+footer {
+  text-align: center;
+  border: 5px solid rgb(70, 189, 233);
+  margin-top: 10px;
+  padding: 20px;
+  background: #d6a70c;
+}
